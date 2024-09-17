@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bakery Modal Page</title>
+    <style>
+        :root {
+            --Test-Dark-Purple: #2B234B;
+            --Test-Light-Purple: #DDB1EC;
+            --Test-Off-White: #F8ECD2;
+            --Test-White: #FFFFFF;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Inter, sans-serif;
+        }
+
+        .page-content {
+            height: 100%;
+            border: 1px solid #000;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url('images/bakery-bg2.png') lightgray 50% / cover no-repeat;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal {
+            display: flex;
+            width: 1425px;
+            height: 722px;
+            padding: 10px;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--Test-White);
+        }
+
+        .modal-left {
+            width: 702px;
+            height: 702px;
+            flex-shrink: 0;
+            background: url('images/coffee-sq.jpg');
+        }
+
+        .modal-right {
+            width: 702px;
+            height: 702px;
+            flex-shrink: 0;
+            background: var(--Test-Light-Purple);
+            box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--Test-Dark-Purple);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 3px;
+        }
+
+        .modal-close svg {
+            margin-left: 5px;
+        }
+
+        .modal-header {
+            color: var(--Test-Dark-Purple);
+            font-size: 70px;
+            font-weight: 700;
+            line-height: 80px;
+            letter-spacing: 1px;
+            margin-top: 80px;
+            margin-bottom: 20px;
+            margin-left: 10px;
+        }
+
+        .modal-text {
+            color: var(--Test-Dark-Purple);
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: 1px;
+            margin-top: 80px;
+            margin-bottom: 40px;
+
+            width: 550px;
+height: 199px;
+margin-left: 10px;
+        }
+
+        .modal-button {
+            display: inline-flex;
+            padding: 20px 40px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100px;
+            border: 2px solid var(--Test-Dark-Purple);
+            background: var(--Test-Dark-Purple);
+            color: var(--Test-White);
+            /*font-weight: 500;*/
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+
+            /*display: inline-flex;*/
+            padding: 20px 40px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-button:hover {
+            background: var(--Test-White);
+            color: var(--Test-Dark-Purple);
+            border: 2px solid var(--Test-Dark-Purple);
+        }
+
+        @media (max-width: 1440px) {
+            .modal {
+                width: 90%;
+                height: auto;
+                max-height: 90vh;
+            }
+
+            .modal-left, .modal-right {
+                width: 50%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .modal {
+                flex-direction: column;
+            }
+
+            .modal-left, .modal-right {
+                width: 100%;
+                height: auto;
+            }
+
+            .modal-header {
+                font-size: 40px;
+                line-height: 50px;
+                margin-top: 40px;
+            }
+
+            .modal-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-content"></div>
+
+    <div class="modal-overlay">
+        <div class="modal">
+            <div class="modal-left"></div>
+            <div class="modal-right">
+                <div class="modal-close" onclick="closeModal()">
+                    CLOSE
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 1L13 13M1 13L13 1" stroke="#2B234B" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <h1 class="modal-header">September Deals</h1>
+                <p class="modal-text">Lorem ipsum odor amet, consectetuer adipiscing elit. Praesent gravida torquent suscipit imperdiet nisi amet metus. Neque in quis euismod taciti vel quam. Proin nostra sollicitudin rutrum ligula consectetur vestibulum sodales orci? Mattis condimentum nascetur augue malesuada facilisis id consequat iaculis. Integer vel dapibus metus lobortis himenaeos. 
+
+                    Conubia placerat per duis vulputate at, eleifend non imperdiet. Euismod porttitor sociosqu aliquam arcu aenean condimentum, facilisi class natoque.</p>
+                <a href="#" class="modal-button">BOOK NOW</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function closeModal() {
+            document.querySelector('.modal-overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Increaseo Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --Test-Dark-Purple: #2B234B;
+            --Test-Light-Purple: #DDB1EC;
+            --Test-Off-White: #F8ECD2;
+            --Test-White: #FFFFFF;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Inter, sans-serif;
+        }
+
+        .page-content {
+            height: 100%;
+            border: 1px solid #000;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url('images/bakery-bg2.png') lightgray 50% / cover no-repeat;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal {
+            display: flex;
+            width: 1405px;
+            max-width: 1405px;
+            height: 702px;
+            padding: 10px;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--Test-White);
+            box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-left {
+            flex: 1;
+            background: url('images/coffee-sq.jpg') center center / cover no-repeat;
+            min-height: 300px;
+            position: relative;
+            width: 702px;
+            height: 702px;
+            min-width: 702px;
+            max-width: 702px;
+        }
+
+        .modal-right {
+            flex: 1;
+            background: var(--Test-Light-Purple);
+            box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            width: 702px;
+            min-width: 702px;
+            max-width: 702px;
+            height: 702px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            color: var(--Test-Dark-Purple);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 3px;
+        }
+
+        .modal-close svg {
+            margin-left: 5px;
+        }
+
+        .modal-header {
+            color: var(--Test-Dark-Purple);
+            font-size: 70px;
+            font-weight: 700;
+            line-height: 80px;
+            letter-spacing: 1px;
+            margin-bottom: 60px;
+            margin-left: 10px;
+        }
+
+        .modal-text, .modal-text-mobile {
+            color: var(--Test-Dark-Purple);
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: 1px;
+            margin-bottom: 60px;
+            max-width: 550px;
+            margin-left: 10px;
+        }
+
+        .modal-text-mobile {
+    display: none;
+
+}
+
+        .modal-button {
+            display: inline-flex;
+            padding: 20px 40px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100px;
+            border: 2px solid var(--Test-Dark-Purple);
+            background: var(--Test-Dark-Purple);
+            color: var(--Test-White);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            align-self: flex-start;
+            margin-left: 10px;
+        }
+
+        .modal-button:hover {
+            background: var(--Test-White);
+            color: var(--Test-Dark-Purple);
+        }
+
+        .modal-close-mobile {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .modal {
+                display: flex;
+                width: 323px;
+                height: 649px;
+                padding: 7px 10px;
+                flex-direction: column;
+                align-items: flex-start;
+                flex-shrink: 0;
+            }
+
+            .modal-left {
+                width: 323px;
+                min-width: 323px;
+                max-width: 323px;
+                height: 323px;
+                max-height: 323px;
+                min-height: auto;
+                background: url('images/coffee-sq.jpg') center center / cover no-repeat;
+            }
+
+
+            .modal-right {
+                width: 323px;
+                min-width: 323px;
+                max-width: 323px;
+                height: 323px; /* Changed from fixed height */
+                max-height: 323px; /* Remove max-height constraint */
+                background: var(--Test-Light-Purple);
+                padding: 20px 0; /* Remove horizontal padding */
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center align items */
+            }
+
+            .modal-close {
+                display: none;
+            }
+
+            .modal-close-mobile {
+                display: flex;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                z-index: 10;
+                color: var(--Test-White);
+                align-items: center;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+                letter-spacing: 3px;
+            }
+
+            .modal-close-mobile svg path {
+                stroke: var(--Test-White);
+            }
+
+            .modal-header {
+                font-size: 30px;
+                line-height: 35px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .modal-text {
+                display: none;
+            }
+
+            .modal-text-mobile {
+                display: block;
+                font-size: 16px;
+                width: 315px;
+                max-width: 315px;
+                margin: 20px auto;
+                text-align: center;
+                padding: 0 4px; /* Add small padding to account for potential scrollbar */
+                box-sizing: border-box; /* Ensure padding is included in width */
+            }
+
+            .modal-button {
+                align-self: center;
+                margin-top: 10px;
+                margin-left: 0; /* Remove left margin */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-content"></div>
+
+    <div class="modal-overlay">
+        <div class="modal">
+            <div class="modal-left">
+                <div class="modal-close-mobile" onclick="closeModal()">
+                    CLOSE
+                    &nbsp;
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                        <g clip-path="url(#clip0_2001_68)">
+                          <path d="M0.709961 0.709961L19.8 19.8" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                          <path d="M0.709961 19.8L19.8 0.709961" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_2001_68">
+                            <rect width="20.51" height="20.51" fill="white"/>
+                          </clipPath>
+                        </defs>
+                      </svg>
+                </div>
+            </div>
+            <div class="modal-right">
+                <div class="modal-close" onclick="closeModal()">
+                    CLOSE
+                    &nbsp;
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                        <g clip-path="url(#clip0_2001_57)">
+                          <path d="M0.709991 0.709961L19.8 19.8" stroke="#2B234B" stroke-width="2" stroke-miterlimit="10"/>
+                          <path d="M0.709991 19.8L19.8 0.709961" stroke="#2B234B" stroke-width="2" stroke-miterlimit="10"/>
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_2001_57">
+                            <rect width="20.51" height="20.51" fill="white"/>
+                          </clipPath>
+                        </defs>
+                      </svg>
+                </div>
+                <h1 class="modal-header">September Deals</h1>
+                <p class="modal-text">Lorem ipsum odor amet, consectetuer adipiscing elit. Praesent gravida torquent suscipit imperdiet nisi amet metus. Neque in quis euismod taciti vel quam. Proin nostra sollicitudin rutrum ligula consectetur vestibulum sodales orci? Mattis condimentum nascetur augue malesuada facilisis id consequat iaculis. Integer vel dapibus metus lobortis himenaeos. 
+                    <br><br>
+                    Conubia placerat per duis vulputate at, eleifend non imperdiet. Euismod porttitor sociosqu aliquam arcu aenean condimentum, facilisi class natoque.</p>
+                <p class="modal-text-mobile">
+                    Lorem ipsum odor amet, consectetuer adipiscing elit. Conubia placerat per duis vulputate at, eleifend non imperdiet. Euismod porttitor sociosqu aliquam arcu aenean condimentum, facilisi. 
+                </p>
+                <a href="#" class="modal-button">BOOK NOW</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function closeModal() {
+            document.querySelector('.modal-overlay').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

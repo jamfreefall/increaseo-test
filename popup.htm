@@ -3,308 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>September Deals Popup</title>
-
+    <title>Increaseo Test</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --dark-purple: #2B234B;
-            --light-purple: #DDB1EC;
-            --off-white: #F8ECD2;
-            --white: #FFFFFF;
+            --Test-Dark-Purple: #2B234B;
+            --Test-Light-Purple: #DDB1EC;
+            --Test-Off-White: #F8ECD2;
+            --Test-White: #FFFFFF;
         }
 
         body, html {
             margin: 0;
             padding: 0;
-            font-family: 'Inter', sans-serif;
             height: 100%;
+            font-family: Inter, sans-serif;
         }
 
-        .background {
-            background-image: url('images/bakery-bg2.png');
-            background-size: cover;
-            background-position: center;
+        .page-content {
             height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border: 1px solid #000;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), url('images/bakery-bg2.png') lightgray 50% / cover no-repeat;
+            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
         }
 
-        .popup-overlay {
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
-            width: 100%;
         }
 
-        .popup-wrapper {
-            background-color: var(--white);
-            padding: 7px;
-            border-radius: 0;
-            box-shadow: 3px 5px 19px -3px rgba(0,0,0,0.74);
+        .modal {
             display: flex;
-            justify-content: center;
+            width: 1405px;
+            max-width: 1405px;
+            height: 702px;
+            padding: 10px;
             align-items: center;
-            max-width: calc(400px + 8px);
-            width: calc(90% + 4px);
+            justify-content: center;
+            background-color: var(--Test-White);
+            box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
         }
 
-        .popup-content {
-            background-color: var(--white);
+        .modal-left {
+            flex: 1;
+            background: url('images/coffee-sq.jpg') center center / cover no-repeat;
+            min-height: 300px;
+            position: relative;
+            width: 702px;
+            height: 702px;
+            min-width: 702px;
+            max-width: 702px;
+        }
+
+        .modal-right {
+            flex: 1;
+            background: var(--Test-Light-Purple);
+            box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.25);
+            position: relative;
+            padding: 20px;
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            width: 100%;
-            overflow: hidden;
+            justify-content: center;
+            width: 702px;
+            min-width: 702px;
+            max-width: 702px;
+            height: 702px;
         }
 
-        .popup-image {
-            width: 100%;
-            height: 200px;
-            background-image: url('images/coffee-sq.png');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .popup-text {
-            padding: 1.5rem;
-            background-color: var(--light-purple);
-            position: relative;
-        }
-
-        .popup-close {
+        .modal-close {
             position: absolute;
-            background: none;
-            border: none;
-            font-size: 0.5rem;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
             cursor: pointer;
-            color: var(--dark-purple);
+            color: var(--Test-Dark-Purple);
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 3px;
         }
 
-        .paragraph-container {
-            font-size: 1rem;
-            width: 90%;
+        .modal-close svg {
+            margin-left: 5px;
         }
 
-        h2 {
-            color: var(--dark-purple);
-            margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 0.0625rem;
-        }
-
-        p {
-            color: var(--dark-purple);
-            margin: 0;
-            font-size: 0.7rem;
-        }
-
-        .book-now {
-            background-color: var(--dark-purple);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--dark-purple);
-            border-radius: 6.25rem;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        .book-now:hover {
-            background-color: var(--white);
-            color: var(--dark-purple);
-        }
-
-        .popup-close-mobile {
-            display: none;
-            background: none;
-            border: none;
-            height: 30px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            color: var(--white);
-            letter-spacing: 0.2rem;
-            padding-right: 10px;
-            padding-top: 15px;
-        }
-
-        .paragraph-container-mobile {
-            display: none;
-        }
-
-        @media (min-width: 769px) {
-            .popup-wrapper {
-                max-width: calc(780px + 8px);
-            }
-
-            .popup-content {
-                flex-direction: row;
-            }
-
-            .popup-image {
-                width: 60%;
-                height: auto;
-            }
-
-            .popup-text {
-                width: 50%;
-                padding: 1.5rem;
-            }
-
-            h2 {
-                font-size: 2.5rem;
-            }
-
-            .book-now {
-                padding: 0.75rem 1.5rem;
-            }
-
-            .popup-close {
-                top: 0.8rem;
-                right: 0.8rem;
-                letter-spacing: 0.1875rem;
-                display:flex;
-                justify-content: center;
-                align-items: center;
-                font-size: 0.6rem;
-                font-weight: 500;
-            }
-            .close-icon{
-                font-size: 1.2rem;
-            }
-
-            .title-container {
-                margin-top: 2.5rem;
-                margin-bottom: 2.5rem;
-            }
-            .button-container {
-                margin-top: 2.5rem;
-                margin-bottom: 1.8rem;
-            }
-            .paragraph-container {
-                
-                margin-bottom: 1rem;
-            }
-            .close-icon{
+        .modal-header {
+            color: var(--Test-Dark-Purple);
+            font-size: 70px;
+            font-weight: 700;
+            line-height: 80px;
+            letter-spacing: 1px;
+            margin-bottom: 60px;
             margin-left: 10px;
-            }
+        }
+
+        .modal-text, .modal-text-mobile {
+            color: var(--Test-Dark-Purple);
+            font-size: 16px;
+            line-height: 20px;
+            letter-spacing: 1px;
+            margin-bottom: 60px;
+            max-width: 550px;
+            margin-left: 10px;
+        }
+
+        .modal-text-mobile {
+    display: none;
+
+}
+
+        .modal-button {
+            display: inline-flex;
+            padding: 20px 40px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100px;
+            border: 2px solid var(--Test-Dark-Purple);
+            background: var(--Test-Dark-Purple);
+            color: var(--Test-White);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            font-weight: 500;
+            align-self: flex-start;
+            margin-left: 10px;
+        }
+
+        .modal-button:hover {
+            background: var(--Test-White);
+            color: var(--Test-Dark-Purple);
+        }
+
+        .modal-close-mobile {
+            display: none;
         }
 
         @media (max-width: 768px) {
-            h2 {
-                font-size: 1.8rem;
-                font-weight: 700;
-            }
-
-            p {
-                font-size: 1rem;
-            }
-
-            .popup-close-mobile {
-                display:flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .popup-close {
-                display: none;
-            }
-
-            .popup-image {
+            .modal {
                 display: flex;
-                height: 300px;
-                justify-content: flex-end;
+                width: 323px;
+                height: 649px;
+                padding: 7px 10px;
+                flex-direction: column;
+                align-items: flex-start;
+                flex-shrink: 0;
             }
 
-            .book-now {
-                font-size: 1rem;
-                padding: 0.75rem 1.5rem;
-                border-radius: 34px;
-                height: 60px;
-                width: 70%;
-                letter-spacing: 0.1rem;
+            .modal-left {
+                width: 323px;
+                min-width: 323px;
+                max-width: 323px;
+                height: 323px;
+                max-height: 323px;
+                min-height: auto;
+                background: url('images/coffee-sq.jpg') center center / cover no-repeat;
             }
 
-            .title-container, .paragraph-container-mobile, .button-container {
-                text-align: center;
-                width: 100%;
-                margin-top: 0.5rem;
-                margin-bottom: 0.5rem;
+
+            .modal-right {
+                width: 323px;
+                min-width: 323px;
+                max-width: 323px;
+                height: 323px; /* Changed from fixed height */
+                max-height: 323px; /* Remove max-height constraint */
+                background: var(--Test-Light-Purple);
+                padding: 20px 0; /* Remove horizontal padding */
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center align items */
             }
 
-            .paragraph-container-mobile {
-                display: block;
-                margin-top: 1.5rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .paragraph-container {
+            .modal-close {
                 display: none;
             }
 
-            .popup-wrapper {
-            width: calc(85% + 8px);
+            .modal-close-mobile {
+                display: flex;
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                z-index: 10;
+                color: var(--Test-White);
+                align-items: center;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 500;
+                letter-spacing: 3px;
             }
-            .close-icon-mobile{
-                margin-left: 15px;
+
+            .modal-close-mobile svg path {
+                stroke: var(--Test-White);
+            }
+
+            .modal-header {
+                font-size: 30px;
+                line-height: 35px;
+                margin-top: 20px;
+                margin-bottom: 10px;
+                text-align: center;
+            }
+
+            .modal-text {
+                display: none;
+            }
+
+            .modal-text-mobile {
+                display: block;
+                font-size: 16px;
+                width: 315px;
+                max-width: 315px;
+                margin: 20px auto;
+                text-align: center;
+                padding: 0 4px; /* Add small padding to account for potential scrollbar */
+                box-sizing: border-box; /* Ensure padding is included in width */
+            }
+
+            .modal-button {
+                align-self: center;
+                margin-top: 10px;
+                margin-left: 0; /* Remove left margin */
             }
         }
     </style>
 </head>
 <body>
-    <div class="background">
-        <div class="popup-overlay" id="popupOverlay">
-            <div class="popup-wrapper">
-                <div class="popup-content">
-                    <div class="popup-image">
-                        <button class="popup-close-mobile" id="closePopupMobile">CLOSE <img class="close-icon-mobile" src="images/X.svg"></button>
-                    </div>
-                    <div class="popup-text">
-                        <button class="popup-close" id="closePopup">CLOSE <span class="close-icon">X</span></button>
-                        <div class="title-container">
-                            <h2>September Deals</h2>
-                        </div>
-                        <div class="paragraph-container-mobile">
-                            <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Conubia placerat per duis vulputate at, eleifend non imperdiet. Euismod porttitor sociosqu aliquam arcu aenean condimentum, facilisi. </p>
-                        </div>
-                        <div class="paragraph-container">
-                            <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Praesent gravida torquent suscipit imperdiet nisi amet metus. Neque in quis euismod taciti vel quam. Proin nostra sollicitudin rutrum ligula consectetur vestibulum sodales orci? Mattis condimentum nascetur augue malesuada facilisis id consequat iaculis. Integer vel dapibus metus lobortis himenaeos.</p>
-                        </div>
-                        <div class="paragraph-container">
-                            <p>Conubia placerat per duis vulputate at, eleifend non imperdiet. Euismod porttitor sociosqu aliquam arcu aenean condimentum, facilisi class natoque.</p>
-                        </div>
-                        <div class="button-container">
-                            <button class="book-now">BOOK NOW</button>
-                        </div>
-                    </div>
+    <div class="page-content"></div>
+
+    <div class="modal-overlay">
+        <div class="modal">
+            <div class="modal-left">
+                <div class="modal-close-mobile" onclick="closeModal()">
+                    CLOSE
+                    &nbsp;
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                        <g clip-path="url(#clip0_2001_68)">
+                          <path d="M0.709961 0.709961L19.8 19.8" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                          <path d="M0.709961 19.8L19.8 0.709961" stroke="white" stroke-width="2" stroke-miterlimit="10"/>
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_2001_68">
+                            <rect width="20.51" height="20.51" fill="white"/>
+                          </clipPath>
+                        </defs>
+                      </svg>
                 </div>
+            </div>
+            <div class="modal-right">
+                <div class="modal-close" onclick="closeModal()">
+                    CLOSE
+                    &nbsp;
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+                        <g clip-path="url(#clip0_2001_57)">
+                          <path d="M0.709991 0.709961L19.8 19.8" stroke="#2B234B" stroke-width="2" stroke-miterlimit="10"/>
+                          <path d="M0.709991 19.8L19.8 0.709961" stroke="#2B234B" stroke-width="2" stroke-miterlimit="10"/>
+                        </g>
+                        <defs>
+                          <clipPath id="clip0_2001_57">
+                            <rect width="20.51" height="20.51" fill="white"/>
+                          </clipPath>
+                        </defs>
+                      </svg>
+                </div>
+                <h1 class="modal-header">September Deals</h1>
+                <p class="modal-text">Lorem ipsum odor amet, consectetuer adipiscing elit. Praesent gravida torquent suscipit imperdiet nisi amet metus. Neque in quis euismod taciti vel quam. Proin nostra sollicitudin rutrum ligula consectetur vestibulum sodales orci? Mattis condimentum nascetur augue malesuada facilisis id consequat iaculis. Integer vel dapibus metus lobortis himenaeos. 
+                    <br><br>
+                    Conubia placerat per duis vulputate at, eleifend non imperdiet. Euismod porttitor sociosqu aliquam arcu aenean condimentum, facilisi class natoque.</p>
+                <p class="modal-text-mobile">
+                    Lorem ipsum odor amet, consectetuer adipiscing elit. Conubia placerat per duis vulputate at, eleifend non imperdiet. Euismod porttitor sociosqu aliquam arcu aenean condimentum, facilisi. 
+                </p>
+                <a href="#" class="modal-button">BOOK NOW</a>
             </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const popup = document.getElementById('popupOverlay');
-            const closeButton = document.getElementById('closePopup');
-            const closeButtonMobile = document.getElementById('closePopupMobile');
-
-            function closePopup() {
-                popup.style.display = 'none';
-            }
-
-            closeButton.addEventListener('click', closePopup);
-            closeButtonMobile.addEventListener('click', closePopup);
-
-            popup.addEventListener('click', function(event) {
-                if (event.target === popup) {
-                    closePopup();
-                }
-            });
-        });
+        function closeModal() {
+            document.querySelector('.modal-overlay').style.display = 'none';
+        }
     </script>
 </body>
 </html>
